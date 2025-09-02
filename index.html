@@ -91,7 +91,7 @@
         .button-container > * {
             pointer-events: auto; /* Re-enable clicks on buttons */
         }
-        /* Session Button - Fixed at Left */
+        /* NEW: Enhanced Glowing Session Button - Fixed at Left */
         .session-btn {
             padding: 12px 24px;
             border: none;
@@ -102,19 +102,57 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
-            background: #FF8200; /* Orange background */
+            background: transparent;
             display: inline-block;
-            box-shadow: 0 0 15px rgba(255, 130, 0, 0.6);
+            box-shadow: 0 0 15px rgba(0, 32, 91, 0.6);
             transition: all 0.3s ease;
             position: relative;
             z-index: 1001;
         }
+        .session-btn::after {
+            content: "";
+            z-index: -1;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #FF8200;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+        .session-btn::before {
+            content: "";
+            background: linear-gradient(
+                45deg,
+                #00205B, #0040a0, #0066ff, #0088ff,
+                #00aaff, #00ccff, #00eeff, #00205B
+            );
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 600%;
+            z-index: -2;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            filter: blur(8px);
+            animation: glowing 20s linear infinite;
+            transition: opacity 0.3s ease-in-out;
+            border-radius: 10px;
+            opacity: 0;
+        }
+        @keyframes glowing {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+        .session-btn:hover::before {
+            opacity: 1;
+        }
         .session-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(255, 130, 0, 0.8);
-            background: #e67300; /* Slightly darker orange on hover */
+            box-shadow: 0 0 20px rgba(0, 32, 91, 0.8);
         }
-        .-btn:active {
+        .session-btn:active {
             color: #000;
             font-weight: bold;
             transform: translateY(0);
@@ -167,11 +205,6 @@
             transition: opacity 0.3s ease-in-out;
             border-radius: 10px;
             opacity: 0;
-        }
-        @keyframes glowing {
-            0% { background-position: 0 0; }
-            50% { background-position: 400% 0; }
-            100% { background-position: 0 0; }
         }
         .home-btn:hover::before {
             opacity: 1;
@@ -451,36 +484,7 @@
             margin-top: auto;
             width: 100%;
         }
-        .counter-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem 0;
-            font-size: 0.9rem;
-        }
-        .counter-container p {
-            margin: 0.25rem 0;
-            color: #FF8200;
-        }
-        /* ENLARGED COUNTER - Significantly increased size */
-        .counter-wrapper {
-            font-size: 3.5rem !important;
-            font-weight: bold;
-            color: #FF8200 !important;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-            margin: 0.5rem 0;
-            padding: 0.5rem 1.5rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            min-width: 300px;
-            letter-spacing: 1px;
-        }
-        .counter-label {
-            font-size: 1.2rem;
-            color: white;
-            margin-bottom: 0.5rem;
-        }
+        /* REMOVED: Counter container styles */
         /* Page Title Styling (to replace the removed header) */
         .page-title {
             text-align: center;
@@ -528,7 +532,7 @@
                 padding: 0 10px;
                 top: 10px;
             }
-            .home-btn, .-btn {
+            .home-btn, .session-btn {
                 padding: 10px 16px;
                 font-size: 0.9rem;
             }
@@ -559,17 +563,11 @@
             .tab-content {
                 padding: 1rem;
             }
-            /* Mobile counter size adjustment */
-            .counter-wrapper {
-                font-size: 2.5rem !important;
-                min-width: 250px;
-                padding: 0.4rem 1rem;
-            }
             .page-title {
                 font-size: 1.3rem;
                 margin-top: 50px;
             }
-            .home-btn, .-btn {
+            .home-btn, .session-btn {
                 font-size: 0.8rem;
                 padding: 8px 12px;
             }
@@ -583,16 +581,7 @@
             .genai-image {
                 max-width: 85%;
             }
-            /* Even larger relative size for small screens */
-            .counter-wrapper {
-                font-size: 2rem !important;
-                min-width: 200px;
-                padding: 0.3rem 0.8rem;
-            }
-            .counter-label {
-                font-size: 1rem;
-            }
-            .home-btn, .-btn {
+            .home-btn, .session-btn {
                 padding: 6px 10px;
                 font-size: 0.7rem;
             }
@@ -610,8 +599,8 @@
 <body>
     <!-- Button Container for perfect alignment -->
     <div class="button-container">
-        <!--  Button (Fixed at Left) -->
-        <div class="-btn">ALL 125_Session 2_Week 6</div>
+        <!-- NEW: Enhanced Glowing Session Button (Fixed at Left) -->
+        <div class="session-btn">ALL 125_Session 2_Week 6</div>
         <!-- Enhanced Glowing Home Button (Fixed at Right) -->
         <a href="https://oeybers-cpu.github.io/a_lit_models/" class="home-btn">Academic Literacy Home</a>
     </div>
@@ -944,15 +933,9 @@
             </div>
         </div>
     </div>
-    <!-- Footer with Hit Counter -->
+    <!-- Footer - Counter Removed -->
     <footer>
-        <div class="counter-container">
-            <div class="counter-label">Total Page Visits</div>
-            <div class="counter-wrapper">
-                <div id="sfce12aua7unus6hsqy4cycg9hewu4wm1wy"></div>
-            </div>
-            <p>This page has been visited by students working on their academic literacy skills</p>
-        </div>
+        <p>Academic Literacy Assignment 2 - Reading Reflection</p>
     </footer>
     <script>
         let currentTab = 'session-outcomes';
@@ -1097,6 +1080,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             showTab('session-outcomes');
         });
-   
+    </script>
 </body>
 </html>

@@ -185,7 +185,6 @@
             font-weight: bold;
             transform: translateY(0);
         }
-
         /* Main Content Area - Removed header styles */
         .main-content {
             flex: 1;
@@ -197,7 +196,6 @@
             flex-direction: column;
         }
         /* Removed .header styles */
-        
         .tab-content {
             display: none;
             padding: 2rem;
@@ -483,7 +481,6 @@
             color: white;
             margin-bottom: 0.5rem;
         }
-        
         /* Page Title Styling (to replace the removed header) */
         .page-title {
             text-align: center;
@@ -496,7 +493,27 @@
             border-radius: 0.75rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
+        /* NEW: Action button styles for save and email */
+        .action-buttons {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .button-secondary {
+            background: #3B82F6;
+            color: white;
+        }
+        .button-secondary:hover {
+            background: #2563eb;
+        }
+        .button-email {
+            background: #10B981;
+            color: white;
+        }
+        .button-email:hover {
+            background: #059669;
+        }
         /* Responsive Adjustments */
         @media (max-width: 1024px) {
             .container {
@@ -595,14 +612,11 @@
     <div class="button-container">
         <!--  Button (Fixed at Left) -->
         <div class="-btn">ALL 125_Session 2_Week 6</div>
-
         <!-- Enhanced Glowing Home Button (Fixed at Right) -->
         <a href="https://oeybers-cpu.github.io/a_lit_models/" class="home-btn">Academic Literacy Home</a>
     </div>
-
     <!-- Page Title to replace the removed header -->
     <h1 class="page-title">Assignment 2: Reading Reflection</h1>
-
     <div class="container">
         <!-- Left Navigation Column -->
         <div class="left-column">
@@ -634,7 +648,6 @@
                 </button>
             </div>
         </div>
-
         <!-- Main Content Area -->
         <div class="main-content">
             <!-- Session Outcomes Tab -->
@@ -654,7 +667,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Instructions Tab -->
             <div id="instructions" class="tab-content">
                 <div class="card">
@@ -712,7 +724,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Language Policy Tab -->
             <div id="language-policy" class="tab-content">
                 <div class="card">
@@ -760,10 +771,20 @@
                                 <textarea class="textarea" placeholder="Write your analysis here..."></textarea>
                             </div>
                         </div>
-                        <button class="button button-primary copy-button" onclick="copyAllResponses('language-policy')">
-                            <span>📋</span>
-                            <span>Copy All Responses</span>
-                        </button>
+                        <div class="action-buttons">
+                            <button class="button button-primary copy-button" onclick="copyAllResponses('language-policy')">
+                                <span>📋</span>
+                                <span>Copy All Responses</span>
+                            </button>
+                            <button class="button button-secondary" onclick="saveResponsesAsFile('language-policy')">
+                                <span>💾</span>
+                                <span>Save as Text File</span>
+                            </button>
+                            <button class="button button-email" onclick="emailResponses('language-policy')">
+                                <span>✉️</span>
+                                <span>Email My Responses</span>
+                            </button>
+                        </div>
                         <div class="tips-container">
                             <h3>4 Key Tips for Integrating Your Analysis</h3>
                             <ul class="tips-list">
@@ -776,7 +797,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Critical Reading Tab -->
             <div id="critical-reading" class="tab-content">
                 <div class="card">
@@ -821,14 +841,23 @@
                                 <textarea class="textarea" placeholder="Write your reflection here..."></textarea>
                             </div>
                         </div>
-                        <button class="button button-primary copy-button" onclick="copyAllResponses('critical-reading')">
-                            <span>📋</span>
-                            <span>Copy All Responses</span>
-                        </button>
+                        <div class="action-buttons">
+                            <button class="button button-primary copy-button" onclick="copyAllResponses('critical-reading')">
+                                <span>📋</span>
+                                <span>Copy All Responses</span>
+                            </button>
+                            <button class="button button-secondary" onclick="saveResponsesAsFile('critical-reading')">
+                                <span>💾</span>
+                                <span>Save as Text File</span>
+                            </button>
+                            <button class="button button-email" onclick="emailResponses('critical-reading')">
+                                <span>✉️</span>
+                                <span>Email My Responses</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-
             <!-- Session Reflection Tab -->
             <div id="session-reflection" class="tab-content">
                 <div class="card">
@@ -853,14 +882,23 @@
                             <h4 class="question-title">4. How does your academic discipline or field of study help you interpret or respond to the issues raised in the Bela Bill debate?</h4>
                             <textarea class="textarea" placeholder="Write your response here..."></textarea>
                         </div>
-                        <button class="button button-primary copy-button" onclick="copyAllResponses('session-reflection')">
-                            <span>📋</span>
-                            <span>Copy All Responses</span>
-                        </button>
+                        <div class="action-buttons">
+                            <button class="button button-primary copy-button" onclick="copyAllResponses('session-reflection')">
+                                <span>📋</span>
+                                <span>Copy All Responses</span>
+                            </button>
+                            <button class="button button-secondary" onclick="saveResponsesAsFile('session-reflection')">
+                                <span>💾</span>
+                                <span>Save as Text File</span>
+                            </button>
+                            <button class="button button-email" onclick="emailResponses('session-reflection')">
+                                <span>✉️</span>
+                                <span>Email My Responses</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-
             <!-- GenAI Integration Tab -->
             <div id="genai-integration" class="tab-content">
                 <div class="card">
@@ -895,7 +933,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Navigation Buttons -->
             <div class="navigation-buttons">
                 <button class="button button-outline" onclick="previousTab()">
@@ -907,7 +944,6 @@
             </div>
         </div>
     </div>
-
     <!-- Footer with Hit Counter -->
     <footer>
         <div class="counter-container">
@@ -918,11 +954,10 @@
             <p>This page has been visited by students working on their academic literacy skills</p>
         </div>
     </footer>
-
     <script>
         let currentTab = 'session-outcomes';
         const tabs = ['session-outcomes', 'instructions', 'language-policy', 'critical-reading', 'session-reflection', 'genai-integration'];
-
+        
         function showTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
             document.querySelectorAll('.nav-button').forEach(button => button.classList.remove('active'));
@@ -932,39 +967,132 @@
             currentTab = tabName;
             document.querySelector('.main-content').scrollTo(0, 0);
         }
-
+        
         function previousTab() {
             const currentIndex = tabs.indexOf(currentTab);
             if (currentIndex > 0) {
                 showTab(tabs[currentIndex - 1]);
             }
         }
-
+        
         function nextTab() {
             const currentIndex = tabs.indexOf(currentTab);
             if (currentIndex < tabs.length - 1) {
                 showTab(tabs[currentIndex + 1]);
             }
         }
-
+        
+        // ENHANCED: Copy all responses with better formatting
         function copyAllResponses(tabId) {
             const textareas = document.querySelectorAll(`#${tabId} .textarea`);
-            let allResponses = "";
+            if (textareas.length === 0) {
+                alert("No responses to copy! This section doesn't have text areas for responses.");
+                return;
+            }
+            
+            let allResponses = "Academic Literacy Assignment 2: Reading Reflection\n";
+            allResponses += "===============================================\n\n";
+            allResponses += `Section: ${document.querySelector(`#${tabId} .card-title`).textContent}\n`;
+            allResponses += `Date: ${new Date().toLocaleDateString()}\n\n`;
+            
             textareas.forEach((textarea, index) => {
                 const question = textarea.closest('.question-card').querySelector('.question-title').textContent;
                 const response = textarea.value || "(No response)";
                 allResponses += `Question ${index + 1}: ${question}\n`;
                 allResponses += `Response: ${response}\n`;
-                allResponses += "----------------------------------------\n";
+                allResponses += "----------------------------------------\n\n";
             });
+            
             navigator.clipboard.writeText(allResponses).then(() => {
-                alert("All responses copied to clipboard!");
+                alert("All responses copied to clipboard!\n\nYou can now paste them into a document or email.");
             }).catch(err => {
                 console.error('Copy failed:', err);
-                alert("Copy failed. Please try again.");
+                alert("Copy failed. Please try again or manually select and copy your responses.");
             });
         }
-
+        
+        // NEW: Save responses as a text file
+        function saveResponsesAsFile(tabId) {
+            const textareas = document.querySelectorAll(`#${tabId} .textarea`);
+            if (textareas.length === 0 || ![...textareas].some(ta => ta.value.trim() !== '')) {
+                alert("No responses to save! Please enter your responses before saving.");
+                return;
+            }
+            
+            let allResponses = "Academic Literacy Assignment 2: Reading Reflection\n";
+            allResponses += "===============================================\n\n";
+            allResponses += `Section: ${document.querySelector(`#${tabId} .card-title`).textContent}\n`;
+            allResponses += `Date: ${new Date().toLocaleDateString()}\n\n`;
+            
+            textareas.forEach((textarea, index) => {
+                const question = textarea.closest('.question-card').querySelector('.question-title').textContent;
+                const response = textarea.value || "(No response)";
+                allResponses += `Question ${index + 1}: ${question}\n`;
+                allResponses += `Response: ${response}\n`;
+                allResponses += "----------------------------------------\n\n";
+            });
+            
+            allResponses += "\n\nThis document was generated from the Academic Literacy Assignment 2 web tool.";
+            
+            // Create a Blob with the text content
+            const blob = new Blob([allResponses], { type: 'text/plain' });
+            
+            // Create a link element
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            
+            // Set the download filename with date
+            const dateStr = new Date().toISOString().slice(0, 10);
+            const sectionName = tabId.replace('-', '_');
+            link.download = `assignment2_${sectionName}_responses_${dateStr}.txt`;
+            
+            // Append to the body
+            document.body.appendChild(link);
+            
+            // Programmatically click the link to trigger download
+            link.click();
+            
+            // Clean up and remove the link
+            URL.revokeObjectURL(link.href);
+            document.body.removeChild(link);
+            
+            alert(`Responses saved as ${link.download}!\n\nCheck your Downloads folder.`);
+        }
+        
+        // NEW: Email responses using mailto protocol
+        function emailResponses(tabId) {
+            const textareas = document.querySelectorAll(`#${tabId} .textarea`);
+            if (textareas.length === 0 || ![...textareas].some(ta => ta.value.trim() !== '')) {
+                alert("No responses to email! Please enter your responses before emailing.");
+                return;
+            }
+            
+            let emailBody = "Academic Literacy Assignment 2: Reading Reflection\n";
+            emailBody += "===============================================\n\n";
+            emailBody += `Section: ${document.querySelector(`#${tabId} .card-title`).textContent}\n`;
+            emailBody += `Date: ${new Date().toLocaleDateString()}\n\n`;
+            
+            textareas.forEach((textarea, index) => {
+                const question = textarea.closest('.question-card').querySelector('.question-title').textContent;
+                const response = textarea.value || "(No response)";
+                emailBody += `Question ${index + 1}: ${question}\n`;
+                emailBody += `Response: ${response}\n`;
+                emailBody += "----------------------------------------\n\n";
+            });
+            
+            emailBody += "\n\nThis email was generated from the Academic Literacy Assignment 2 web tool.";
+            
+            // Format the body for mailto (replace newlines with %0D%0A)
+            const mailtoBody = encodeURIComponent(emailBody);
+            
+            // Create mailto link with subject and body
+            const subject = "My Academic Literacy Assignment 2 Responses";
+            const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${mailtoBody}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+        }
+        
         // Initialize active tab
         document.addEventListener('DOMContentLoaded', () => {
             showTab('session-outcomes');
